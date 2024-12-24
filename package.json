@@ -8,7 +8,8 @@
   "dependencies": {
     "drizzle-orm": "^0.38.2",
     "drizzle-typebox": "^0.2.0",
-    "elysia": "latest"
+    "elysia": "latest",
+    "limbo-wasm": "^0.0.10"
   },
   "devDependencies": {
     "bun-types": "latest"
