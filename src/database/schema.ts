@@ -1,28 +1,27 @@
 import { sql } from "drizzle-orm";
-import * as s from "drizzle-orm/sqlite-core";
+import { int, text, sqliteTable, integer } from "drizzle-orm/sqlite-core";
 
-export const users = s.sqliteTable("users", {
-  id: s.text().primaryKey(),
-  username: s.text().notNull().unique(),
-  email: s.text().notNull().unique(),
-  password: s.text().notNull(),
-  createdAt: s
-    .integer({ mode: "timestamp" })
-    .default(sql`(CURRENT_TIMESTAMP)`)
+export const users = sqliteTable("users", {
+  id: integer().primaryKey(),
+  username: text("username").notNull(),
+  email: text("email").notNull().unique(),
+  password: text("password").notNull(),
+  createdAt: int("created_at", { mode: "timestamp" })
+    .default(sql`CURRENT_TIMESTAMP`)
     .notNull(),
-  updatedAt: s
-    .integer({ mode: "timestamp" })
-    .default(sql`(CURRENT_TIMESTAMP)`)
+  updatedAt: int("updated_at", { mode: "timestamp" })
+    .default(sql`CURRENT_TIMESTAMP`)
     .notNull(),
 });
 
-export const session = s.sqliteTable("session", {
-  id: s.text().primaryKey(),
-  userId: s
-    .text()
+// Type Inference
+
+export const session = sqliteTable("session", {
+  id: text().primaryKey(),
+  userId: text()
     .notNull()
     .references(() => users.id),
-  expiresAt: s.integer({ mode: "timestamp" }).notNull(),
+  expiresAt: integer({ mode: "timestamp" }).notNull(),
 });
 
 export type Users = typeof users.$inferSelect;
