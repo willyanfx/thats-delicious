@@ -3,15 +3,20 @@
   "version": "1.0.50",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "bun run --watch src/index.ts"
+    "dev": "bun run --watch src/index.ts",
+    "db:push": "drizzle-kit push",
+    "db:migrate": "drizzle-kit migrate",
+    "db:studio": "drizzle-kit studio"
   },
   "dependencies": {
+    "better-sqlite3": "^11.7.0",
     "drizzle-orm": "^0.38.2",
     "drizzle-typebox": "^0.2.0",
-    "elysia": "latest",
-    "limbo-wasm": "^0.0.10"
+    "elysia": "latest"
   },
   "devDependencies": {
+    "drizzle-kit": "^0.30.1",
+    "@types/bun": "^1.1.14",
     "bun-types": "latest"
   },
   "module": "src/index.js"
