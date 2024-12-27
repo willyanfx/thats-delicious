@@ -5,13 +5,13 @@ if (!process.env.DATABASE_URL) throw new Error("DATABASE_URL is not set");
 
 const sqlite = new Database(process.env.DATABASE_URL!);
 
-const healthCheck = () => {
+export const healthCheck = () => {
   try {
     sqlite.prepare("SELECT 1").get();
     console.log("Database connection successful");
     return true;
   } catch (error) {
-    console.error("Database connection failed:", error);
+    console.error(`🙅 🚫 🙅 🚫 🙅 🚫 🙅 🚫 → ${error}`);
     return false;
   }
 };
