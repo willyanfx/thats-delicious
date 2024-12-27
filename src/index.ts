@@ -7,9 +7,8 @@ const app = new Elysia()
     try {
       // Now you can safely query the users table
       const allUsers = db.select().from(users).all();
-      console.log("Users:", allUsers);
+
       return {
-        // This is the response object  that will be sent to the client
         status: 200,
         body: allUsers,
       };
