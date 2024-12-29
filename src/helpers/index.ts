@@ -1,4 +1,4 @@
-exports.menu = [
+export const menu = [
   { slug: "/stores", title: "Stores", icon: "store" },
   { slug: "/tags", title: "Tags", icon: "tag" },
   { slug: "/top", title: "Top", icon: "top" },
@@ -7,4 +7,4 @@ exports.menu = [
 ];
 
 // Some details about the site
-exports.siteName = `That's Delicious!`;
+export const siteName = `That's Delicious!`;
