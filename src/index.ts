@@ -1,31 +1,16 @@
-import { Elysia } from "elysia";
+import { Hono } from "hono";
 import { db } from "./database";
 import { users } from "./database/schema";
-import swagger from "@elysiajs/swagger";
-import { html, Html } from "@elysiajs/html";
-import { storeController } from "./controllers/storeController";
 
-const app = new Elysia()
-  // .use(swagger())
-  .use(html())
-  .get("/", () => {
-    try {
-      // Now you can safely query the users table
-      const allUsers = db.select().from(users).all();
+const app = new Hono();
 
-      return {
-        status: 200,
-        body: allUsers,
-      };
-    } catch (error) {
-      console.error("Error querying users:", error);
-    }
-  })
-  .use(storeController)
-  .listen(3000);
+app.get("/", (c) => {
+  const allUsers = db.select().from(users).all();
 
-console.log(
-  `🦊 Elysia is running at ${app.server?.hostname}:${app.server?.port}`
-);
+  return c.json({
+    status: 200,
+    body: JSON.stringify(allUsers, null, 2),
+  });
+});
 
-export type App = typeof app;
+export default app;
