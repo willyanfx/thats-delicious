@@ -4,17 +4,23 @@ import { users } from "./database/schema";
 import { serveStatic } from "hono/bun";
 import { Layout } from "hono/dist/types/context";
 import { html } from "hono/html";
+import { showRoutes } from "hono/dev";
 
-const app = new Hono();
+const auth = new Hono().basePath("/auth").get("/", (c) => c.text("auth"));
 
-app.use("/public", serveStatic({ root: "./public" }));
+const workspaces = auth
+  .basePath("/workspaces")
+  .get("/", (c) => c.text("Workspaces"));
 
-app.get("/", (c) => {
-  const allUsers = db.select().from(users).all();
-
-  return c.render(
-    `<Layout title="Home" siteName="My Site"> Users: ${allUsers} </Layout>`
-  );
+const projects = workspaces.basePath("/:workspaceId/projects").get("/", (c) => {
+  return c.text(` Workspace is ${c.req.param("workspaceId")}`);
 });
 
-export default app;
+const routes = new Hono()
+  .route("/", auth)
+  .route("/", workspaces)
+  .route("/", projects);
+
+showRoutes(routes);
+
+export default routes;
