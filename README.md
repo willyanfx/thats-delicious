@@ -18,23 +18,27 @@ Project structure:
 
 ```
 src/
-├── index.ts // Main application entry
-├── 📁 middleware/ // Custom middleware
+├── index.ts
+├── 📁 middleware/
 │ └── auth.ts
-├── 📁 controllers/ // Custom middleware
+├── 📁 controllers/
 │ └── authController.ts
 │ └── userController.ts
 │ └── storeController.ts
 │ └── reviewController.ts
-├── 📁 routes/ // Route handlers
-│ └── index.ts // Routes
-├── 📁 views/ // HTML templates
-│ ├── 📁 components/ // Reusable HTML components
-│ │ └── navbar.ts
-│ │ └── reviews.ts
-│ │ └── inputs.ts
-│ │ └── maps.ts
-│ ├── 📁 layouts/ // Page layouts
+├── 📁 routes/
+│ └── index.ts
+├── 📁 lib/
+│ ├── base.ts
+│ ├── types.ts
+│ └── helpers.ts
+├── 📁 components/
+│ └── navbar.ts
+│ └── reviews.ts
+│ └── inputs.ts
+│ └── maps.ts
+├── 📁 views/
+│ ├── 📁 layouts/
 │ │ └── base.ts
 │ │ └── admin.ts
 │ ├── account.tsx
@@ -50,7 +54,7 @@ src/
 │ ├── stores.tsx
 │ ├── tag.tsx
 │ └── topStores.tsx
-└── 📁 db/ // Database - Model
+└── 📁 db/
    ├── index.ts
    ├── schema.ts
    └── 📁 seeds/
