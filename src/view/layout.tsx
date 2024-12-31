@@ -1,5 +1,5 @@
 import { html } from "hono/html";
-import { menu } from "../helpers";
+import { menu } from "../lib/nav";
 
 interface SiteData {
   title: string;
